@@ -1,327 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Infrastructure Project Facilitation Office</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-:root {
-    --primary-blue: #1e40af;
-    --dark-blue: #1e3a8a;
-    --light-blue: #3b82f6;
-    --yellow-accent: #fbbf24;
-    --white: #ffffff;
-    --gray-light: #f5f5f5;
-    --text-dark: #1f2937;
-}
+        :root {
+            --primary-blue: #1e40af;
+            --dark-blue: #1e3a8a;
+            --light-blue: #3b82f6;
+            --yellow-accent: #fbbf24;
+            --white: #ffffff;
+            --gray-light: #f5f5f5;
+            --text-dark: #1f2937;
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: var(--text-dark);
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
 
-/* Layout Container */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+        /* Layout Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-/* Header Top */
-.header-top {
-    background: var(--dark-blue);
-    color: white;
-    padding: 8px 0;
-    font-size: 14px;
-}
+        /* Header Top */
+        .header-top {
+            background: var(--dark-blue);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
 
-.header-top .container {
-    display: flex;
-    justify-content: flex-end;
-    gap: 20px;
-    flex-wrap: wrap;
-}
+        .header-top .container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
-.contact-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-.contact-info a {
-    color: white;
-    text-decoration: none;
-}
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+        }
 
-.contact-info a:hover {
-    text-decoration: underline;
-}
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
 
-/* Navbar */
-.navbar {
-    background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
-    padding: 15px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
 
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.logo img {
-    height: 60px;
-    width: auto;
-}
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
 
-.nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-}
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
 
-.nav-menu a.active {
-    color: var(--yellow-accent);
-    position: relative;
-}
+        .nav-menu a.active {
+            color: var(--yellow-accent);
+            position: relative;
+        }
 
-.nav-menu a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    text-transform: uppercase;
-    font-size: 14px;
-    transition: color 0.3s ease;
-}
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
 
-.nav-menu a:hover {
-    color: var(--yellow-accent);
-}
+        .nav-menu a:hover {
+            color: var(--yellow-accent);
+        }
 
-/* Hero Section */
-.hero {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('https://infrastructureconference.id/assets/images/background-banner.jpg');
-    background-size: cover;
-    background-position: center;
-    min-height: 30vh;
-    display: flex;
-    align-items: center;
-    color: white;
-    text-align: center;
-}
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('https://infrastructureconference.id/assets/images/background-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 30vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
 
-.hero h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-transform: uppercase;
-}
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
 
-/* Content Section */
-.section {
-    padding: 80px 0;
-}
+        /* Content Section */
+        .section {
+            padding: 80px 0;
+        }
 
-.section-content {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-    align-items: center;
-}
+        .section-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
 
-.text-content p {
-    font-size: 1.1rem;
-    text-align: justify;
-}
+        .text-content p {
+            font-size: 1.1rem;
+            text-align: justify;
+        }
 
-.text-content ul {
-    margin: 10px 0;
-    padding-left: 30px;
-}
+        .text-content ul {
+            margin: 10px 0;
+            padding-left: 30px;
+        }
 
-.text-content li {
-    font-size: 1.1rem;
-}
+        .text-content li {
+            font-size: 1.1rem;
+        }
 
-.text-content h3 {
-    margin-top: 30px;
-    font-size: 1.5rem;
-    color: var(--dark-blue);
-}
-
-
-/* Button */
-.see-more-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--primary-blue);
-    color: var(--white);
-    padding: 12px 30px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    margin-top: 40px;
-    transition: all 0.3s ease;
-}
-
-.see-more-btn:hover {
-    background: var(--light-blue);
-}
-
-/* Footer */
-.footer {
-    background: var(--gray-light);
-    padding: 60px 0 30px;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    margin-bottom: 40px;
-}
-
-.footer-section h3 {
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    color: var(--dark-blue);
-}
-
-.footer-section img {
-    max-width: 200px;
-    height: auto;
-}
-
-.footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.footer-links a {
-    color: var(--text-dark);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.footer-links a:hover {
-    color: var(--primary-blue);
-}
-
-.social-links {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.social-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: var(--text-dark);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.social-link:hover {
-    color: var(--primary-blue);
-}
-
-.social-link i {
-    width: 20px;
-    font-size: 20px;
-}
-
-/* Mobile Navigation */
-.mobile-nav {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--dark-blue);
-    padding: 15px;
-    z-index: 1000;
-    border-top: 2px solid white;
-}
-
-.mobile-nav-items {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.mobile-nav-item {
-    color: white;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    font-size: 12px;
-}
+        .text-content h3 {
+            margin-top: 30px;
+            font-size: 1.5rem;
+            color: var(--dark-blue);
+        }
 
 
-.mobile-nav-item.active {
-    color: var(--yellow-accent);
-}
+        /* Button */
+        .see-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 40px;
+            transition: all 0.3s ease;
+        }
 
-.mobile-nav-item i {
-    font-size: 18px;
-}
+        .see-more-btn:hover {
+            background: var(--light-blue);
+        }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .nav-menu { display: none; }
-    .mobile-nav { display: block; }
+        /* Footer */
+        .footer {
+            background: var(--gray-light);
+            padding: 60px 0 30px;
+        }
 
-    .hero h1 { font-size: 1.8rem; }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
 
-    .section { padding: 50px 0; }
-    .text-content p,
-    .text-content li { font-size: 1rem; }
+        .footer-section h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: var(--dark-blue);
+        }
 
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
+        .footer-section img {
+            max-width: 200px;
+            height: auto;
+        }
 
-    .header-top .container {
-        justify-content: center;
-        gap: 15px;
-        font-size: 12px;
-    }
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
-    .contact-info {
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
-        text-align: center;
-    }
-}
+        .footer-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-@media (max-width: 480px) {
-    .container { padding: 0 15px; }
-    .hero h1 { font-size: 1.5rem; }
-}
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--primary-blue);
+        }
+
+        .social-link i {
+            width: 20px;
+            font-size: 20px;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--dark-blue);
+            padding: 15px;
+            z-index: 1000;
+            border-top: 2px solid white;
+        }
+
+        .mobile-nav-items {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .mobile-nav-item {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+        }
+
+
+        .mobile-nav-item.active {
+            color: var(--yellow-accent);
+        }
+
+        .mobile-nav-item i {
+            font-size: 18px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-nav {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+
+            .text-content p,
+            .text-content li {
+                font-size: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .header-top .container {
+                justify-content: center;
+                gap: 15px;
+                font-size: 12px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
+
 <body>
     <!-- Header Top -->
     <div class="header-top">
@@ -342,7 +361,8 @@ body {
                 </div>
                 <ul class="nav-menu">
                     <li><a href="https://ipfo.kemenkoinfra.go.id/homepage.html">Home</a></li>
-                    <li><a href="https://ipfo.kemenkoinfra.go.id/project-catalogue.html" class="active">Project Catalogue</a></li>
+                    <li><a href="https://ipfo.kemenkoinfra.go.id/project-catalogue.html" class="active">Project
+                            Catalogue</a></li>
                     <li><a href="https://ipfo.kemenkoinfra.go.id/contact-us.html">Contact Us</a></li>
                     <li><a href="https://ipfo.kemenkoinfra.go.id/news.html">News & Updates</a></li>
                 </ul>
@@ -364,45 +384,64 @@ body {
         <div class="container">
             <div class="section-content">
                 <div class="image-content">
-                    <div style="display: flex; justify-content: center; align-items: center; height: 100%; padding-bottom: 40px;">
-                        <img src="https://i.imgur.com/jCYMs7Y.png" alt="Catalogue Image" style="width:70%; border-radius: 15px;">
-                    </div></div>
+                    <div
+                        style="display: flex; justify-content: center; align-items: center; height: 100%; padding-bottom: 40px;">
+                        <img src="https://i.imgur.com/jCYMs7Y.png" alt="Catalogue Image"
+                            style="width:70%; border-radius: 15px;">
+                    </div>
                 </div>
-                <div class="text-content">
-                    <h1>IPFO Q2 2025 Project Catalogue</h1>
+            </div>
+            <div class="text-content">
+                <h1>IPFO Q2 2025 Project Catalogue</h1>
 
-                    <p></p>
-                    <h3>Purpose of the Catalogue</h3>
-                    <p>As part of Indonesia’s effort to accelerate infrastructure investment, the Indonesia Project Facilitation Office (IPFO) has prepared a Project Catalogue featuring a list of infrastructure projects across various sectors, each with its respective level of readiness.</p>
-                    <br>
-                    <p>The catalogue was first introduced at the International Conference on Infrastructure (ICI) 2025 as a demonstration of the Government’s commitment to transparency and openness in presenting a clear project pipeline. Through IPFO, this catalogue now serves as the official portal for investors, development partners, and stakeholders to access information on Indonesia’s infrastructure projects.</p>
+                <p></p>
+                <h3>Purpose of the Catalogue</h3>
+                <p>As part of Indonesia’s effort to accelerate infrastructure investment, the Indonesia Project
+                    Facilitation Office (IPFO) has prepared a Project Catalogue featuring a list of infrastructure
+                    projects across various sectors, each with its respective level of readiness.</p>
+                <br>
+                <p>The catalogue was first introduced at the International Conference on Infrastructure (ICI) 2025 as a
+                    demonstration of the Government’s commitment to transparency and openness in presenting a clear
+                    project pipeline. Through IPFO, this catalogue now serves as the official portal for investors,
+                    development partners, and stakeholders to access information on Indonesia’s infrastructure projects.
+                </p>
 
-                    <h3>Contents of the Catalogue</h3>
-                    <p>The catalogue presents:</p>
-                    <ul>
-                        <li>A list of <strong>infrastructure projects</strong> at various stages of development, with a focus on those that are <strong>available for private investment.</strong></li>
-                        <li>Detailed information for each project, including <strong>location, structure, financial metrics, investment scheme, status, government support mechanism,</strong> and <strong>project timelines.</strong></li>
-                        <li><strong>Key contact persons</strong> from the proposing institutions, enabling direct engagement.</li>
-                        <li>Opportunities to explore both solicited and unsolicited projects of national strategic importance.</li>
-                    </ul>
+                <h3>Contents of the Catalogue</h3>
+                <p>The catalogue presents:</p>
+                <ul>
+                    <li>A list of <strong>infrastructure projects</strong> at various stages of development, with a
+                        focus on those that are <strong>available for private investment.</strong></li>
+                    <li>Detailed information for each project, including <strong>location, structure, financial metrics,
+                            investment scheme, status, government support mechanism,</strong> and <strong>project
+                            timelines.</strong></li>
+                    <li><strong>Key contact persons</strong> from the proposing institutions, enabling direct
+                        engagement.</li>
+                    <li>Opportunities to explore both solicited and unsolicited projects of national strategic
+                        importance.</li>
+                </ul>
 
-                    <h3>Intended Audience</h3>
-                    <p>This catalogue is designed for:</p>
-                    <ul>
-                        <li><strong>Investors and financial institutions</strong> seeking credible, well-prepared infrastructure pipelines.</li>
-                        <li><strong>Private sector developers, operators, and technical consultants</strong> interested in partnership opportunities.</li>
-                        <li><strong>Policymakers and public officials</strong> involved in infrastructure planning, financing, and delivery.</li>
-                        <li><strong>Conference delegates</strong> attending thematic sessions, exhibitions, or one-on-one meetings.</li>
-                    </ul>
-
-                </div>
-                <div class="text-center">
-                    <a href="https://drive.google.com/file/d/1lcdipWK2pC40pgC4n4vP7q1gL_PReq2_/view?usp=sharing" class="see-more-btn">
-                        VIEW CATALOGUE <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
+                <h3>Intended Audience</h3>
+                <p>This catalogue is designed for:</p>
+                <ul>
+                    <li><strong>Investors and financial institutions</strong> seeking credible, well-prepared
+                        infrastructure pipelines.</li>
+                    <li><strong>Private sector developers, operators, and technical consultants</strong> interested in
+                        partnership opportunities.</li>
+                    <li><strong>Policymakers and public officials</strong> involved in infrastructure planning,
+                        financing, and delivery.</li>
+                    <li><strong>Conference delegates</strong> attending thematic sessions, exhibitions, or one-on-one
+                        meetings.</li>
+                </ul>
 
             </div>
+            <div class="text-center">
+                <a href="https://drive.google.com/file/d/1lcdipWK2pC40pgC4n4vP7q1gL_PReq2_/view?usp=sharing"
+                    class="see-more-btn">
+                    VIEW CATALOGUE <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+        </div>
         </div>
     </section>
 
@@ -411,19 +450,19 @@ body {
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                
+
                 <div class="footer-section">
                     <h3>Our Office</h3>
                     <div class="footer-links">
                         <a href="https://maps.app.goo.gl/d1MnPAUq1zS32bpJA" target="_blank">
                             <i class="fas fa-map-marker-alt"></i>
                             <p>Kementerian Koordinator Bidang Infrastruktur & Pembangunan Kewilayahan </br>
-                            Jl. M.H. Thamrin No.8, RT.10/RW.10, Kb. Sirih, Kec. Menteng, Jakarta Pusat </br>
-                            Daerah Khusus Ibukota Jakarta 10340</p>
+                                Jl. M.H. Thamrin No.8, RT.10/RW.10, Kb. Sirih, Kec. Menteng, Jakarta Pusat </br>
+                                Daerah Khusus Ibukota Jakarta 10340</p>
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3>Contact Us</h3>
                     <div class="footer-links">
@@ -431,9 +470,13 @@ body {
                             <i class="fas fa-envelope"></i>
                             sekretariat@ipfo.kemenkoinfra.go.id
                         </a>
+                        <a href="tel:+6285123332509">
+                            <i class="fas fa-phone"></i>
+                            +6285123332509
+                        </a>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </footer>
@@ -476,13 +519,13 @@ body {
         });
 
         // Mobile menu toggle (placeholder for future implementation)
-        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function () {
             // Add mobile menu implementation here
             console.log('Mobile menu toggle clicked');
         });
 
         // Add scroll effect to navbar
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 100) {
                 navbar.style.background = 'linear-gradient(135deg, rgba(30, 58, 138, 0.95), rgba(30, 64, 175, 0.95))';
@@ -499,7 +542,7 @@ body {
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver(function(entries) {
+        const observer = new IntersectionObserver(function (entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
@@ -517,7 +560,7 @@ body {
         });
 
         // Add loading animation
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             document.body.style.opacity = '1';
         });
 
@@ -526,4 +569,5 @@ body {
         document.body.style.transition = 'opacity 0.5s ease-in';
     </script>
 </body>
+
 </html>
