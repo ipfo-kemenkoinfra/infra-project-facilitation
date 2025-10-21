@@ -1,580 +1,594 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Infrastructure Project Facilitation Office</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-:root {
-    --primary-blue: #1e40af;
-    --dark-blue: #1e3a8a;
-    --light-blue: #3b82f6;
-    --yellow-accent: #fbbf24;
-    --white: #ffffff;
-    --gray-light: #f5f5f5;
-    --text-dark: #1f2937;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: var(--text-dark);
-}
-
-/* Layout Container */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Header Top */
-.header-top {
-    background: var(--dark-blue);
-    color: white;
-    padding: 8px 0;
-    font-size: 14px;
-}
-
-.header-top .container {
-    display: flex;
-    justify-content: flex-end;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.contact-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.contact-info a {
-    color: white;
-    text-decoration: none;
-}
-
-.contact-info a:hover {
-    text-decoration: underline;
-}
-
-/* Navbar */
-.navbar {
-    background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
-    padding: 15px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo img {
-    height: 60px;
-    width: auto;
-}
-
-.nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-}
-
-.nav-menu a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    text-transform: uppercase;
-    font-size: 14px;
-    transition: color 0.3s ease;
-}
-
-.nav-menu a:hover {
-    color: var(--yellow-accent);
-}
-
-.nav-menu a.active {
-    color: var(--yellow-accent);
-    position: relative;
-}
-
-.nav-menu a.active::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--yellow-accent);
-}
-
-/* Page Header */
-.page-header {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('https://infrastructureconference.id/assets/images/background-banner.jpg');
-    padding: 60px 0;
-    color: white;
-    text-align: center;
-}
-
-.page-header h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: 15px;
-}
-
-.page-header .breadcrumb {
-    font-size: 1.1rem;
-    opacity: 0.9;
-}
-
-.page-header .breadcrumb a {
-    color: var(--yellow-accent);
-    text-decoration: none;
-}
-
-/* News Metadata Styling */
-.news-meta {
-    background: var(--white);
-    overflow: hidden;
-}
-
-.news-meta-content {
-    padding: 30px;
-    display: flex;
-    gap: 30px;
-    align-items: flex-start;
-}
-
-/* Date Section */
-.news-date {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-shrink: 0;
-    position: relative;
-}
-
-.news-date::after {
-    content: '';
-    position: absolute;
-    right: -15px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 1px;
-    height: 60px;
-    background: linear-gradient(to bottom, transparent, var(--primary-blue), transparent);
-}
-
-.date-day {
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--primary-blue);
-    line-height: 1;
-    text-shadow: 0 2px 4px rgba(30, 64, 175, 0.1);
-}
-
-.date-month-year {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2px;
-}
-
-.date-month {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--primary-blue);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    line-height: 1;
-}
-
-.date-year {
-    font-size: 0.95rem;
-    color: var(--gray-medium);
-    font-weight: 600;
-    line-height: 1;
-}
-
-/* News Info Section */
-.news-info {
-    flex: 1;
-    min-width: 0;
-}
-
-.news-title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 25px;
-    line-height: 1.4;
-    word-wrap: break-word;
-    background: linear-gradient(135deg, var(--text-dark), var(--primary-blue));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-/* News Details */
-.news-details {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    flex-wrap: wrap;
-}
-
-.news-author {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--text-dark);
-    font-size: 0.95rem;
-    padding: 8px 16px;
-    background: rgba(30, 64, 175, 0.05);
-    border-radius: 25px;
-    border: 1px solid rgba(30, 64, 175, 0.1);
-}
-
-.news-author i {
-    color: var(--primary-blue);
-    font-size: 1rem;
-}
-
-.news-author strong {
-    color: var(--primary-blue);
-}
-
-/* Tags */
-.news-tags {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.tag {
-    background: linear-gradient(135deg, var(--light-blue), var(--primary-blue));
-    color: white;
-    padding: 8px 16px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-.tag:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
-}
-
-/* Views */
-.news-views {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--text-dark);
-    font-size: 0.95rem;
-    padding: 8px 16px;
-    background: rgba(107, 114, 128, 0.05);
-    border-radius: 25px;
-    border: 1px solid rgba(107, 114, 128, 0.1);
-}
-
-.news-views i {
-    color: var(--primary-blue);
-    font-size: 1rem;
-}
-
-.news-views strong {
-    color: var(--primary-blue);
-    font-weight: 700;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .news-meta-content {
-        flex-direction: column;
-        gap: 25px;
-        padding: 25px;
-    }
-
-    .news-date {
-        align-self: flex-start;
-        gap: 12px;
-    }
-
-    .news-date::after {
-        display: none;
-    }
-
-    .date-day {
-        font-size: 2.5rem;
-    }
-
-    .news-title {
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-    }
-
-    .news-details {
-        gap: 15px;
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-    }
-
-    .news-tags {
-        gap: 10px;
-        width: 100%;
-    }
-
-    .tag {
-        font-size: 0.8rem;
-        padding: 6px 14px;
-    }
-
-    .news-author,
-    .news-views {
-        font-size: 0.9rem;
-        padding: 6px 14px;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 0 10px;
-    }
-
-    .news-meta-content {
-        padding: 20px;
-    }
-
-    .date-day {
-        font-size: 2.2rem;
-    }
-
-    .news-title {
-        font-size: 1.3rem;
-    }
-
-    .date-month {
-        font-size: 1rem;
-    }
-
-    .date-year {
-        font-size: 0.9rem;
-    }
-}
-
-
-/* Content Section */
-.section {
-    padding: 80px 0;
-}
-
-.section-content {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-    align-items: center;
-}
-
-.text-content p {
-    margin: 15px 0;
-    font-size: 1.1rem;
-    text-align: justify;
-}
-
-.text-content ul {
-    margin: 10px 0;
-    padding-left: 30px;
-}
-
-.text-content li {
-    font-size: 1.1rem;
-}
-
-.text-content h3 {
-    margin-top: 30px;
-    font-size: 1.5rem;
-    color: var(--dark-blue);
-}
-
-
-/* Button */
-.see-more-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--primary-blue);
-    color: var(--white);
-    padding: 12px 30px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    margin-top: 40px;
-    transition: all 0.3s ease;
-}
-
-.see-more-btn:hover {
-    background: var(--light-blue);
-}
-
-/* Footer */
-.footer {
-    background: var(--gray-light);
-    padding: 60px 0 30px;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    margin-bottom: 40px;
-}
-
-.footer-section h3 {
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    color: var(--dark-blue);
-}
-
-.footer-section img {
-    max-width: 200px;
-    height: auto;
-}
-
-.footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.footer-links a {
-    color: var(--text-dark);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.footer-links a:hover {
-    color: var(--primary-blue);
-}
-
-.social-links {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.social-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: var(--text-dark);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.social-link:hover {
-    color: var(--primary-blue);
-}
-
-.social-link i {
-    width: 20px;
-    font-size: 20px;
-}
-
-/* Mobile Navigation */
-.mobile-nav {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--dark-blue);
-    padding: 15px;
-    z-index: 1000;
-    border-top: 2px solid white;
-}
-
-.mobile-nav-items {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.mobile-nav-item {
-    color: white;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    font-size: 12px;
-}
-
-
-.mobile-nav-item.active {
-    color: var(--yellow-accent);
-}
-
-.mobile-nav-item i {
-    font-size: 18px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .nav-menu { display: none; }
-    .mobile-nav { display: block; }
-
-    .section { padding: 50px 0; }
-    .text-content p,
-    .text-content li { font-size: 1rem; }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .header-top .container {
-        justify-content: center;
-        gap: 15px;
-        font-size: 12px;
-    }
-
-    .contact-info {
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
-        text-align: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .container { padding: 0 15px; }
-}
+        :root {
+            --primary-blue: #1e40af;
+            --dark-blue: #1e3a8a;
+            --light-blue: #3b82f6;
+            --yellow-accent: #fbbf24;
+            --white: #ffffff;
+            --gray-light: #f5f5f5;
+            --text-dark: #1f2937;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Top */
+        .header-top {
+            background: var(--dark-blue);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .header-top .container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--yellow-accent);
+        }
+
+        .nav-menu a.active {
+            color: var(--yellow-accent);
+            position: relative;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--yellow-accent);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('https://infrastructureconference.id/assets/images/background-banner.jpg');
+            padding: 60px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .page-header .breadcrumb {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .page-header .breadcrumb a {
+            color: var(--yellow-accent);
+            text-decoration: none;
+        }
+
+        /* News Metadata Styling */
+        .news-meta {
+            background: var(--white);
+            overflow: hidden;
+        }
+
+        .news-meta-content {
+            padding: 30px;
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        /* Date Section */
+        .news-date {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .news-date::after {
+            content: '';
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent, var(--primary-blue), transparent);
+        }
+
+        .date-day {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            line-height: 1;
+            text-shadow: 0 2px 4px rgba(30, 64, 175, 0.1);
+        }
+
+        .date-month-year {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+        }
+
+        .date-month {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+
+        .date-year {
+            font-size: 0.95rem;
+            color: var(--gray-medium);
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        /* News Info Section */
+        .news-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .news-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            line-height: 1.4;
+            word-wrap: break-word;
+            background: linear-gradient(135deg, var(--text-dark), var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* News Details */
+        .news-details {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .news-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            padding: 8px 16px;
+            background: rgba(30, 64, 175, 0.05);
+            border-radius: 25px;
+            border: 1px solid rgba(30, 64, 175, 0.1);
+        }
+
+        .news-author i {
+            color: var(--primary-blue);
+            font-size: 1rem;
+        }
+
+        .news-author strong {
+            color: var(--primary-blue);
+        }
+
+        /* Tags */
+        .news-tags {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, var(--light-blue), var(--primary-blue));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Views */
+        .news-views {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            padding: 8px 16px;
+            background: rgba(107, 114, 128, 0.05);
+            border-radius: 25px;
+            border: 1px solid rgba(107, 114, 128, 0.1);
+        }
+
+        .news-views i {
+            color: var(--primary-blue);
+            font-size: 1rem;
+        }
+
+        .news-views strong {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .news-meta-content {
+                flex-direction: column;
+                gap: 25px;
+                padding: 25px;
+            }
+
+            .news-date {
+                align-self: flex-start;
+                gap: 12px;
+            }
+
+            .news-date::after {
+                display: none;
+            }
+
+            .date-day {
+                font-size: 2.5rem;
+            }
+
+            .news-title {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+
+            .news-details {
+                gap: 15px;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+
+            .news-tags {
+                gap: 10px;
+                width: 100%;
+            }
+
+            .tag {
+                font-size: 0.8rem;
+                padding: 6px 14px;
+            }
+
+            .news-author,
+            .news-views {
+                font-size: 0.9rem;
+                padding: 6px 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .news-meta-content {
+                padding: 20px;
+            }
+
+            .date-day {
+                font-size: 2.2rem;
+            }
+
+            .news-title {
+                font-size: 1.3rem;
+            }
+
+            .date-month {
+                font-size: 1rem;
+            }
+
+            .date-year {
+                font-size: 0.9rem;
+            }
+        }
+
+
+        /* Content Section */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .text-content p {
+            margin: 15px 0;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        .text-content ul {
+            margin: 10px 0;
+            padding-left: 30px;
+        }
+
+        .text-content li {
+            font-size: 1.1rem;
+        }
+
+        .text-content h3 {
+            margin-top: 30px;
+            font-size: 1.5rem;
+            color: var(--dark-blue);
+        }
+
+
+        /* Button */
+        .see-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .see-more-btn:hover {
+            background: var(--light-blue);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-light);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: var(--dark-blue);
+        }
+
+        .footer-section img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--primary-blue);
+        }
+
+        .social-link i {
+            width: 20px;
+            font-size: 20px;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--dark-blue);
+            padding: 15px;
+            z-index: 1000;
+            border-top: 2px solid white;
+        }
+
+        .mobile-nav-items {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .mobile-nav-item {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+        }
+
+
+        .mobile-nav-item.active {
+            color: var(--yellow-accent);
+        }
+
+        .mobile-nav-item i {
+            font-size: 18px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-nav {
+                display: block;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+
+            .text-content p,
+            .text-content li {
+                font-size: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .header-top .container {
+                justify-content: center;
+                gap: 15px;
+                font-size: 12px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+        }
     </style>
 </head>
+
 <body>
     <!-- Header Top -->
     <div class="header-top">
@@ -602,7 +616,7 @@ body {
             </div>
         </div>
     </nav>
-    
+
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
@@ -624,7 +638,8 @@ body {
                         </div>
                     </div>
                     <div class="news-info">
-                        <h2 class="news-title">Akselerasi Investasi Pembangunan Infrastruktur, Menko AHY Umumkan Pembentukan Project Facilitation Office</h2>
+                        <h2 class="news-title">Akselerasi Investasi Pembangunan Infrastruktur, Menko AHY Umumkan
+                            Pembentukan Project Facilitation Office</h2>
                         <div class="news-details">
                             <div class="news-author">
                                 <i class="fas fa-user"></i>
@@ -640,34 +655,66 @@ body {
                 </div>
                 <!-- News Image Section -->
                 <div class="image-content">
-                    <div style="display: flex; justify-content: center; align-items: center; height: 100%; padding-bottom: 40px;">
-                        <img src="https://kemenkoinfra.go.id/uploads/galeri_post/20250616103138-2025-06-16galeri_post103137.jpeg" alt="Catalogue Image" style="width:80%; border-radius: 15px;">
-                    </div></div>
+                    <div
+                        style="display: flex; justify-content: center; align-items: center; height: 100%; padding-bottom: 40px;">
+                        <img src="https://i.imgur.com/XEtatNa.jpeg" alt="Catalogue Image"
+                            style="width:80%; border-radius: 15px;">
+                    </div>
                 </div>
-
-
-                <div class="text-content">
-
-                    <p>JAKARTA - Menteri Koordinator Bidang Infrastruktur dan Pembangunan Kewilayahan, Agus Harimurti Yudhoyono (Menko AHY), mengumumkan langkah konkret pemerintah untuk mempercepat investasi infrastruktur nasional melalui pembentukan Project Facilitation Office. Hal ini disampaikannya dalam penutupan International Conference on Infrastructure (ICI) yang digelar di Jakarta International Convention Center (JICC), Kamis (12/6/2025).</p>
-                    <p>“Implementasinya, kami akan kerja sama dengan Kementerian Investasi dan Hilirisasi juga BKPM serta kementerian lainnya untuk membentuk semacam Project Facilitation Office sebagai pusat akselerasi investasi infrastruktur,” kata Menko AHY dihadapan Presiden Prabowo dan pejabat, penguasaha dalam dan luar negeri.</p>
-                    <p>Menko AHY menjelaskan bahwa inisiatif ini terinspirasi dari berbagai praktik terbaik di dunia, seperti yang diterapkan di Singapura, Hong Kong, dan Australia.</p>
-                    <p>Pembentukan Project Facilitation Office merupakan bagian dari prioritas kelima dalam agenda strategis infrastruktur nasional, yaitu Financing Reform for Sustainable Infrastructure. Menko AHY menyampaikan bahwa arahan Presiden Prabowo Subianto adalah menggeser paradigma pembangunan dari model birokratis ke arah kolaboratif, dengan menekankan peran sektor swasta dan pembiayaan inovatif.</p>
-                    <p>“Kita mendorong skema KPBU, Green Bonds, dan Blended Finance. Bukan hanya mencari dana, tetapi mengundang mitra-mitra strategis untuk membangun bersama,” ujarnya.</p>
-                    <p>Konferensi ICI 2025 mengangkat tema Sustainable Infrastructure for the Future: Innovation and Collaboration, yang menurut Menko AHY mencerminkan filosofi pembangunan di bawah kepemimpinan Presiden Prabowo. </p>
-                    <p>“Tema ini bukan hanya relevan tetapi mencerminkan filosofi pembangunan di bawah kepemimpinan Bapak Presiden yang menggabungkan keadilan sosial, kedaulatan nasional dan juga keberlanjutan,” ungkapnya.</p>
-                    <p>Sebagai tindak lanjut konkret dari ICI 2025, pemerintah juga meluncurkan Project Catalog 2025 yang menawarkan sekitar 40 proyek infrastruktur strategis. Proyek-proyek tersebut mencakup sektor transportasi, energi, air, pengelolaan sampah, perumahan, dan kota cerdas.
-                    <p>“Kami tidak sekedar mengundang investasi, tapi mengundang kemitraan jangka panjang dalam semangat gotong royong global. Khusus pesisir utara Jawa, utamanya Jakarta,” kata Menko AHY.</p>
-                    <p>Konferensi ICI 2025 dihadiri oleh jajaran Menteri dan Wakil Menteri Kabinet Merah Putih, Duta Besar negara-negara sahabat, anggota DPR/MPR dan DPD RI, para Gubernur dan Wakil Gubernur, Wali Kota dan Wakil Wali Kota, Bupati dan Wakil Bupati, serta delegasi, para pemimpin dunia usaha, dan mitra pembangunan dari lintas negara.</p>
-                    <p>Konferensi infrastruktur pertama berskala internasional di Indonesia ini dihadiri 7.000 peserta lebih dari 33 negara partisipan, termasuk Indonesia, Amerika Serikat, Australia, Belanda, Jepang, Kanada, Korea Selatan, Norwegia, Uni Emirat Arab, Tiongkok, Uni Eropa, Spanyol, Vietnam, Iran, Singapura, Turki, Hungaria, Myanmar, Denmark, Prancis, Inggris, Rusia, Jerman, Uruguay, Finlandia, Swiss, dan Azerbaijan.</p>
-                    <p>ICI 2025 akan menjadi panggung penting bagi kolaborasi internasional, dengan kehadiran berbagai investor dan lembaga pembiayaan terkemuka, seperti Macquarie (Australia), GIC (Singapura), World Bank, International Finance Corporation (IFC), Asian Development Bank (ADB), dan The Asia Group.</p>
-                </div>
-                <div class="text-center">
-                    <a href="https://ipfo.kemenkoinfra.go.id/homepage.html" class="see-more-btn">
-                        Additional link <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-
             </div>
+
+
+            <div class="text-content">
+
+                <p>JAKARTA - Menteri Koordinator Bidang Infrastruktur dan Pembangunan Kewilayahan, Agus Harimurti
+                    Yudhoyono (Menko AHY), mengumumkan langkah konkret pemerintah untuk mempercepat investasi
+                    infrastruktur nasional melalui pembentukan Project Facilitation Office. Hal ini disampaikannya dalam
+                    penutupan International Conference on Infrastructure (ICI) yang digelar di Jakarta International
+                    Convention Center (JICC), Kamis (12/6/2025).</p>
+                <p>“Implementasinya, kami akan kerja sama dengan Kementerian Investasi dan Hilirisasi juga BKPM serta
+                    kementerian lainnya untuk membentuk semacam Project Facilitation Office sebagai pusat akselerasi
+                    investasi infrastruktur,” kata Menko AHY dihadapan Presiden Prabowo dan pejabat, penguasaha dalam
+                    dan luar negeri.</p>
+                <p>Menko AHY menjelaskan bahwa inisiatif ini terinspirasi dari berbagai praktik terbaik di dunia,
+                    seperti yang diterapkan di Singapura, Hong Kong, dan Australia.</p>
+                <p>Pembentukan Project Facilitation Office merupakan bagian dari prioritas kelima dalam agenda strategis
+                    infrastruktur nasional, yaitu Financing Reform for Sustainable Infrastructure. Menko AHY
+                    menyampaikan bahwa arahan Presiden Prabowo Subianto adalah menggeser paradigma pembangunan dari
+                    model birokratis ke arah kolaboratif, dengan menekankan peran sektor swasta dan pembiayaan inovatif.
+                </p>
+                <p>“Kita mendorong skema KPBU, Green Bonds, dan Blended Finance. Bukan hanya mencari dana, tetapi
+                    mengundang mitra-mitra strategis untuk membangun bersama,” ujarnya.</p>
+                <p>Konferensi ICI 2025 mengangkat tema Sustainable Infrastructure for the Future: Innovation and
+                    Collaboration, yang menurut Menko AHY mencerminkan filosofi pembangunan di bawah kepemimpinan
+                    Presiden Prabowo. </p>
+                <p>“Tema ini bukan hanya relevan tetapi mencerminkan filosofi pembangunan di bawah kepemimpinan Bapak
+                    Presiden yang menggabungkan keadilan sosial, kedaulatan nasional dan juga keberlanjutan,” ungkapnya.
+                </p>
+                <p>Sebagai tindak lanjut konkret dari ICI 2025, pemerintah juga meluncurkan Project Catalog 2025 yang
+                    menawarkan sekitar 40 proyek infrastruktur strategis. Proyek-proyek tersebut mencakup sektor
+                    transportasi, energi, air, pengelolaan sampah, perumahan, dan kota cerdas.
+                <p>“Kami tidak sekedar mengundang investasi, tapi mengundang kemitraan jangka panjang dalam semangat
+                    gotong royong global. Khusus pesisir utara Jawa, utamanya Jakarta,” kata Menko AHY.</p>
+                <p>Konferensi ICI 2025 dihadiri oleh jajaran Menteri dan Wakil Menteri Kabinet Merah Putih, Duta Besar
+                    negara-negara sahabat, anggota DPR/MPR dan DPD RI, para Gubernur dan Wakil Gubernur, Wali Kota dan
+                    Wakil Wali Kota, Bupati dan Wakil Bupati, serta delegasi, para pemimpin dunia usaha, dan mitra
+                    pembangunan dari lintas negara.</p>
+                <p>Konferensi infrastruktur pertama berskala internasional di Indonesia ini dihadiri 7.000 peserta lebih
+                    dari 33 negara partisipan, termasuk Indonesia, Amerika Serikat, Australia, Belanda, Jepang, Kanada,
+                    Korea Selatan, Norwegia, Uni Emirat Arab, Tiongkok, Uni Eropa, Spanyol, Vietnam, Iran, Singapura,
+                    Turki, Hungaria, Myanmar, Denmark, Prancis, Inggris, Rusia, Jerman, Uruguay, Finlandia, Swiss, dan
+                    Azerbaijan.</p>
+                <p>ICI 2025 akan menjadi panggung penting bagi kolaborasi internasional, dengan kehadiran berbagai
+                    investor dan lembaga pembiayaan terkemuka, seperti Macquarie (Australia), GIC (Singapura), World
+                    Bank, International Finance Corporation (IFC), Asian Development Bank (ADB), dan The Asia Group.</p>
+            </div>
+            <div class="text-center">
+                <a href="https://ipfo.kemenkoinfra.go.id/homepage.html" class="see-more-btn">
+                    Additional link <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+        </div>
         </div>
     </section>
 
@@ -676,19 +723,19 @@ body {
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                
+
                 <div class="footer-section">
                     <h3>Our Office</h3>
                     <div class="footer-links">
                         <a href="https://maps.app.goo.gl/d1MnPAUq1zS32bpJA" target="_blank">
                             <i class="fas fa-map-marker-alt"></i>
                             <p>Kementerian Koordinator Bidang Infrastruktur & Pembangunan Kewilayahan </br>
-                            Jl. M.H. Thamrin No.8, RT.10/RW.10, Kb. Sirih, Kec. Menteng, Jakarta Pusat </br>
-                            Daerah Khusus Ibukota Jakarta 10340</p>
+                                Jl. M.H. Thamrin No.8, RT.10/RW.10, Kb. Sirih, Kec. Menteng, Jakarta Pusat </br>
+                                Daerah Khusus Ibukota Jakarta 10340</p>
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3>Contact Us</h3>
                     <div class="footer-links">
@@ -698,7 +745,7 @@ body {
                         </a>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </footer>
@@ -741,13 +788,13 @@ body {
         });
 
         // Mobile menu toggle (placeholder for future implementation)
-        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function () {
             // Add mobile menu implementation here
             console.log('Mobile menu toggle clicked');
         });
 
         // Add scroll effect to navbar
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 100) {
                 navbar.style.background = 'linear-gradient(135deg, rgba(30, 58, 138, 0.95), rgba(30, 64, 175, 0.95))';
@@ -764,7 +811,7 @@ body {
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver(function(entries) {
+        const observer = new IntersectionObserver(function (entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
@@ -782,7 +829,7 @@ body {
         });
 
         // Add loading animation
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             document.body.style.opacity = '1';
         });
 
@@ -791,4 +838,5 @@ body {
         document.body.style.transition = 'opacity 0.5s ease-in';
     </script>
 </body>
+
 </html>
