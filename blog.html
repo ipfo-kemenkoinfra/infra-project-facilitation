@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Infrastructure Project Facilitation Office</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1e40af;
+            --dark-blue: #1e3a8a;
+            --light-blue: #3b82f6;
+            --yellow-accent: #fbbf24;
+            --white: #ffffff;
+            --gray-light: #f5f5f5;
+            --gray-medium: #6b7280;
+            --text-dark: #1f2937;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Top */
+        .header-top {
+            background: var(--dark-blue);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .header-top .container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--yellow-accent);
+        }
+
+        .nav-menu a.active {
+            color: var(--yellow-accent);
+            position: relative;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--yellow-accent);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('https://infrastructureconference.id/assets/images/background-banner.jpg');
+            padding: 60px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            padding: 40px 0;
+            color: white;
+        }
+
+        .newsletter-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-text h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .newsletter-text p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            padding: 15px 30px;
+            background: var(--yellow-accent);
+            color: var(--dark-blue);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        /* Blog Section */
+        .blog-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .blog-filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 10px 25px;
+            background: var(--gray-light);
+            border: 2px solid transparent;
+            border-radius: 25px;
+            color: var(--text-dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        .filter-btn.active {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        /* Loading State */
+        .loading-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .spinner {
+            border: 4px solid var(--gray-light);
+            border-top: 4px solid var(--primary-blue);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: var(--gray-light);
+        }
+
+        .blog-content {
+            padding: 25px;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .blog-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--gray-medium);
+            font-size: 0.9rem;
+        }
+
+        .blog-category {
+            background: var(--primary-blue);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .blog-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            color: var(--gray-medium);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .blog-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray-medium);
+            font-size: 0.9rem;
+            padding-top: 15px;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: gap 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 12px;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            color: var(--gray-medium);
+            margin-bottom: 20px;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            color: var(--gray-medium);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-light);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: var(--dark-blue);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--dark-blue);
+            padding: 15px;
+            z-index: 1000;
+            border-top: 2px solid white;
+        }
+
+        .mobile-nav-items {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .mobile-nav-item {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+        }
+
+        .mobile-nav-item.active {
+            color: var(--yellow-accent);
+        }
+
+        .mobile-nav-item i {
+            font-size: 18px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-nav {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .newsletter-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .newsletter-text h2 {
+                font-size: 1.5rem;
+            }
+
+            .newsletter-form {
+                max-width: 100%;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-section {
+                padding: 50px 0 100px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Top -->
+    <div class="header-top">
+        <div class="container">
+            <div class="contact-info">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:sekretariat@ipfo.kemenkoinfra.go.id">sekretariat@ipfo.kemenkoinfra.go.id</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo">
+                    <img src="https://i.imgur.com/PsjsTEv.png" alt="IPFO Logo">
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="https://ipfo.kemenkoinfra.go.id/homepage.html">Home</a></li>
+                    <li><a href="https://ipfo.kemenkoinfra.go.id/project-catalogue.html">Project Catalogue</a></li>
+                    <li><a href="https://ipfo.kemenkoinfra.go.id/contact-us.html">Contact Us</a></li>
+                    <li><a href="https://ipfo.kemenkoinfra.go.id/blog.html" class="active">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Blog & Insights</h1>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Stay Updated</h2>
+                    <p>Subscribe to get the latest news and insights</p>
+                </div>
+                <form class="newsletter-form" id="newsletterForm" action="https://formspree.io/f/xdkwazkj"
+                    method="POST">
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                    <input type="hidden" name="form_type" value="newsletter">
+                    <button type="submit">
+                        <i class="fas fa-paper-plane"></i> Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+        <div class="container">
+            <!-- Filters -->
+            <div class="blog-filters">
+                <button class="filter-btn active" data-category="all">All Posts</button>
+                <button class="filter-btn" data-category="Infrastructure">Infrastructure</button>
+                <button class="filter-btn" data-category="Investment">Investment</button>
+                <button class="filter-btn" data-category="Policy">Policy</button>
+                <button class="filter-btn" data-category="News">News</button>
+            </div>
+
+            <!-- Loading State -->
+            <div class="loading-state" id="loadingState">
+                <div class="spinner"></div>
+                <p>Loading blog posts...</p>
+            </div>
+
+            <!-- Blog Grid -->
+            <div class="blog-grid" id="blogGrid" style="display: none;"></div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <i class="fas fa-inbox"></i>
+                <h3>No Posts Found</h3>
+                <p>Check back soon for new content!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Our Office</h3>
+                    <div class="footer-links">
+                        <a href="https://maps.app.goo.gl/d1MnPAUq1zS32bpJA" target="_blank">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>Kementerian Koordinator Bidang Infrastruktur & Pembangunan Kewilayahan<br>
+                                Jl. M.H. Thamrin No.8, Jakarta Pusat<br>
+                                DKI Jakarta 10340</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="footer-links">
+                        <a href="mailto:sekretariat@ipfo.kemenkoinfra.go.id">
+                            <i class="fas fa-envelope"></i>
+                            sekretariat@ipfo.kemenkoinfra.go.id
+                        </a>
+                        <a href="tel:+6285123332509">
+                            <i class="fas fa-phone"></i>
+                            +6285123332509
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <div class="mobile-nav-items">
+            <a href="https://ipfo.kemenkoinfra.go.id/homepage.html" class="mobile-nav-item">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <a href="https://ipfo.kemenkoinfra.go.id/project-catalogue.html" class="mobile-nav-item">
+                <i class="fas fa-folder-open"></i>
+                Projects
+            </a>
+            <a href="https://ipfo.kemenkoinfra.go.id/contact-us.html" class="mobile-nav-item">
+                <i class="fas fa-envelope"></i>
+                Contact
+            </a>
+            <a href="https://ipfo.kemenkoinfra.go.id/blog.html" class="mobile-nav-item active">
+                <i class="fas fa-newspaper"></i>
+                Blog
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Google Sheets Configuration
+        // REPLACE THIS URL WITH YOUR PUBLISHED GOOGLE SHEET CSV URL
+        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTjaqBX7gq1Mg0lxaLyw5rO2Bo1jbaxMveEopOadoSUxHFIlJii__6pMTaWTnDkUDeLoTivvmP_dE31/pub?gid=0&single=true&output=csv';
+
+        let allPosts = [];
+        let currentFilter = 'all';
+
+        // Load blog posts from Google Sheets
+        async function loadBlogPosts() {
+            try {
+                // Try to fetch from Google Sheets first
+                try {
+                    const response = await fetch(SHEET_URL);
+                    const csvText = await response.text();
+                    allPosts = parseCSV(csvText);
+                    console.log('Loaded posts from Google Sheets:', allPosts);
+                } catch (fetchError) {
+                    console.warn('Could not load from Google Sheets, using sample data:', fetchError);
+                    allPosts = getSamplePosts();
+                }
+
+                displayPosts(allPosts);
+                hideLoading();
+            } catch (error) {
+                console.error('Error loading posts:', error);
+                showEmptyState();
+            }
+        }
+
+        // Parse CSV data
+        function parseCSV(csv) {
+            const lines = csv.trim().split('\n');
+            const posts = [];
+
+            // Skip header row, start from index 1
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue;
+
+                // Handle CSV parsing with potential commas in content
+                const row = parseCSVLine(lines[i]);
+
+                if (row.length >= 8) {
+                    const post = {
+                        id: row[0]?.trim() || '',
+                        title: row[1]?.trim() || '',
+                        excerpt: row[2]?.trim() || '',
+                        content: row[3]?.trim() || '',
+                        category: row[4]?.trim() || 'General',
+                        author: row[5]?.trim() || 'IPFO Team',
+                        date: row[6]?.trim() || new Date().toISOString().split('T')[0],
+                        image: row[7]?.trim() || 'https://via.placeholder.com/400x250/1e40af/ffffff?text=IPFO',
+                        link: `blog-article.html?id=${row[0]?.trim()}`
+                    };
+                    posts.push(post);
+                }
+            }
+            return posts;
+        }
+
+        // Parse a single CSV line handling quoted fields
+        function parseCSVLine(line) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                const nextChar = line[i + 1];
+
+                if (char === '"') {
+                    if (inQuotes && nextChar === '"') {
+                        current += '"';
+                        i++;
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current);
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            result.push(current);
+            return result;
+        }
+
+        // Sample posts for demonstration
+        function getSamplePosts() {
+            return [
+                {
+                    id: '1',
+                    title: 'Akselerasi Investasi Pembangunan Infrastruktur',
+                    excerpt: 'Menko AHY mengumumkan langkah konkret pemerintah untuk mempercepat investasi infrastruktur nasional melalui pembentukan Project Facilitation Office.',
+                    category: 'News',
+                    author: 'IPFO Team',
+                    date: '2025-06-12',
+                    image: 'https://i.imgur.com/XEtatNa.jpeg',
+                    link: 'blog-article.html?id=1'
+                },
+                {
+                    id: '2',
+                    title: 'Indonesia\'s Infrastructure Investment Outlook 2025',
+                    excerpt: 'Exploring opportunities in water supply, transportation, waste management, and energy transition sectors across Indonesia.',
+                    category: 'Investment',
+                    author: 'Policy Team',
+                    date: '2025-06-10',
+                    image: 'https://via.placeholder.com/400x250/1e40af/ffffff?text=Infrastructure+Outlook',
+                    link: 'blog-article.html?id=2'
+                },
+                {
+                    id: '3',
+                    title: 'Public-Private Partnership Framework Update',
+                    excerpt: 'New guidelines for KPBU projects to streamline investment processes and enhance collaboration between government and private sector.',
+                    category: 'Policy',
+                    author: 'Legal Team',
+                    date: '2025-06-08',
+                    image: 'https://via.placeholder.com/400x250/3b82f6/ffffff?text=PPP+Framework',
+                    link: 'blog-article.html?id=3'
+                }
+            ];
+        }
+
+        // Display posts
+        function displayPosts(posts) {
+            const grid = document.getElementById('blogGrid');
+            grid.innerHTML = '';
+
+            if (posts.length === 0) {
+                showEmptyState();
+                return;
+            }
+
+            posts.forEach(post => {
+                const card = createBlogCard(post);
+                grid.appendChild(card);
+            });
+
+            grid.style.display = 'grid';
+            document.getElementById('emptyState').style.display = 'none';
+        }
+
+        // Create blog card element
+        function createBlogCard(post) {
+            const card = document.createElement('div');
+            card.className = 'blog-card';
+            card.onclick = () => window.location.href = post.link;
+
+            const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+
+            card.innerHTML = `
+                <img src="${post.image}" alt="${post.title}" class="blog-image" onerror="this.src='https://via.placeholder.com/400x250/1e40af/ffffff?text=IPFO'">
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-date">
+                            <i class="far fa-calendar"></i> ${formattedDate}
+                        </span>
+                        <span class="blog-category">${post.category}</span>
+                    </div>
+                    <h3 class="blog-title">${post.title}</h3>
+                    <p class="blog-excerpt">${post.excerpt}</p>
+                    <a href="${post.link}" class="read-more">
+                        Read More <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <div class="blog-author">
+                        <i class="fas fa-user"></i> ${post.author}
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const category = btn.dataset.category;
+                currentFilter = category;
+
+                const filtered = category === 'all'
+                    ? allPosts
+                    : allPosts.filter(post => post.category === category);
+
+                displayPosts(filtered);
+            });
+        });
+
+        // Newsletter form
+        document.getElementById('newsletterForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    alert('Thank you for subscribing!');
+                    form.reset();
+                } else {
+                    alert('Oops! There was a problem. Please try again.');
+                }
+            } catch (error) {
+                alert('Oops! There was a problem. Please try again.');
+            }
+        });
+
+        // Helper functions
+        function hideLoading() {
+            document.getElementById('loadingState').style.display = 'none';
+        }
+
+        function showEmptyState() {
+            document.getElementById('loadingState').style.display = 'none';
+            document.getElementById('blogGrid').style.display = 'none';
+            document.getElementById('emptyState').style.display = 'block';
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            loadBlogPosts();
+        });
+    </script>
+</body>
+
+</html>

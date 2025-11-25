@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article - Infrastructure Project Facilitation Office</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1e40af;
+            --dark-blue: #1e3a8a;
+            --light-blue: #3b82f6;
+            --yellow-accent: #fbbf24;
+            --white: #ffffff;
+            --gray-light: #f5f5f5;
+            --gray-medium: #6b7280;
+            --text-dark: #1f2937;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-top {
+            background: var(--dark-blue);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .header-top .container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--yellow-accent);
+        }
+
+        .loading-container {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .spinner {
+            border: 4px solid var(--gray-light);
+            border-top: 4px solid var(--primary-blue);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .article-header {
+            background: var(--gray-light);
+            padding: 60px 0 40px;
+            margin-bottom: 50px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: gap 0.3s ease;
+        }
+
+        .back-button:hover {
+            gap: 12px;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: var(--primary-blue);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .article-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.3;
+            margin-bottom: 25px;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            color: var(--gray-medium);
+            font-size: 1rem;
+        }
+
+        .article-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .article-meta-item i {
+            color: var(--primary-blue);
+        }
+
+        .article-image-container {
+            max-width: 1000px;
+            margin: 0 auto 50px;
+        }
+
+        .article-image {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-content-wrapper {
+            padding: 40px 0 80px;
+        }
+
+        .article-layout {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 60px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .article-main {
+            min-width: 0;
+        }
+
+        .article-content {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .article-content p {
+            margin-bottom: 24px;
+        }
+
+        .article-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark-blue);
+            margin: 40px 0 20px;
+            line-height: 1.3;
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark-blue);
+            margin: 30px 0 15px;
+        }
+
+        .article-content ul,
+        .article-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .article-content li {
+            margin-bottom: 12px;
+        }
+
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-blue);
+            padding-left: 25px;
+            margin: 30px 0;
+            font-style: italic;
+            color: var(--gray-medium);
+            font-size: 1.2rem;
+        }
+
+        .article-content a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            border-bottom: 1px solid var(--primary-blue);
+        }
+
+        .article-sidebar {
+            position: sticky;
+            top: 100px;
+            align-self: start;
+        }
+
+        .sidebar-section {
+            background: var(--gray-light);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .sidebar-section h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .share-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .share-button {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: white;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .share-button:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .share-button.twitter {
+            color: #1DA1F2;
+        }
+
+        .share-button.linkedin {
+            color: #0A66C2;
+        }
+
+        .share-button.facebook {
+            color: #1877F2;
+        }
+
+        .share-button.email {
+            color: var(--primary-blue);
+        }
+
+        .newsletter-sidebar {
+            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .newsletter-sidebar h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .newsletter-sidebar p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-sidebar input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .newsletter-sidebar button {
+            width: 100%;
+            padding: 12px;
+            background: var(--yellow-accent);
+            color: var(--dark-blue);
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-sidebar button:hover {
+            background: white;
+        }
+
+        .related-posts {
+            background: var(--gray-light);
+            padding: 60px 0;
+            margin-top: 60px;
+        }
+
+        .related-posts h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--dark-blue);
+            margin-bottom: 40px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .related-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .related-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .related-card-content {
+            padding: 20px;
+        }
+
+        .related-card h3 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .related-card p {
+            color: var(--gray-medium);
+            font-size: 0.95rem;
+        }
+
+        .footer {
+            background: var(--gray-light);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: var(--dark-blue);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--dark-blue);
+            padding: 15px;
+            z-index: 1000;
+            border-top: 2px solid white;
+        }
+
+        .mobile-nav-items {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .mobile-nav-item {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+        }
+
+        .mobile-nav-item.active {
+            color: var(--yellow-accent);
+        }
+
+        .error-container {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .error-container i {
+            font-size: 4rem;
+            color: var(--gray-medium);
+            margin-bottom: 20px;
+        }
+
+        .error-container h2 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .error-container p {
+            color: var(--gray-medium);
+            margin-bottom: 25px;
+        }
+
+        .error-container a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .error-container a:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 968px) {
+            .article-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .article-sidebar {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-nav {
+                display: block;
+            }
+
+            .article-title {
+                font-size: 2rem;
+            }
+
+            .article-content {
+                font-size: 1.05rem;
+            }
+
+            .article-content-wrapper {
+                padding-bottom: 120px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-top">
+        <div class="container">
+            <div class="contact-info">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:sekretariat@ipfo.kemenkoinfra.go.id">sekretariat@ipfo.kemenkoinfra.go.id</a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo">
+                    <img src="https://i.imgur.com/PsjsTEv.png" alt="IPFO Logo">
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="https://ipfo.kemenkoinfra.go.id/homepage.html">Home</a></li>
+                    <li><a href="https://ipfo.kemenkoinfra.go.id/project-catalogue.html">Project Catalogue</a></li>
+                    <li><a href="https://ipfo.kemenkoinfra.go.id/contact-us.html">Contact Us</a></li>
+                    <li><a href="https://ipfo.kemenkoinfra.go.id/blog.html" class="active">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="loading-container" id="loadingState">
+        <div class="spinner"></div>
+        <p>Loading article...</p>
+    </div>
+
+    <div id="articleContainer" style="display: none;">
+        <div class="article-header">
+            <div class="container">
+                <a href="blog.html" class="back-button">
+                    <i class="fas fa-arrow-left"></i> Back to Blog
+                </a>
+                <span class="article-category" id="articleCategory"></span>
+                <h1 class="article-title" id="articleTitle"></h1>
+                <div class="article-meta">
+                    <span class="article-meta-item">
+                        <i class="far fa-calendar"></i>
+                        <span id="articleDate"></span>
+                    </span>
+                    <span class="article-meta-item">
+                        <i class="far fa-user"></i>
+                        <span id="articleAuthor"></span>
+                    </span>
+                    <span class="article-meta-item">
+                        <i class="far fa-clock"></i>
+                        <span id="readTime"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-image-container container">
+            <img id="articleImage" class="article-image" alt="">
+        </div>
+
+        <div class="article-content-wrapper">
+            <div class="container">
+                <div class="article-layout">
+                    <article class="article-main">
+                        <div class="article-content" id="articleContent"></div>
+                    </article>
+
+                    <aside class="article-sidebar">
+                        <div class="sidebar-section">
+                            <h3>Share Article</h3>
+                            <div class="share-buttons">
+                                <a href="#" class="share-button twitter" id="shareTwitter" target="_blank">
+                                    <i class="fab fa-twitter"></i> Twitter
+                                </a>
+                                <a href="#" class="share-button linkedin" id="shareLinkedIn" target="_blank">
+                                    <i class="fab fa-linkedin"></i> LinkedIn
+                                </a>
+                                <a href="#" class="share-button facebook" id="shareFacebook" target="_blank">
+                                    <i class="fab fa-facebook"></i> Facebook
+                                </a>
+                                <a href="#" class="share-button email" id="shareEmail">
+                                    <i class="fas fa-envelope"></i> Email
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="newsletter-sidebar">
+                            <h3>Stay Updated</h3>
+                            <p>Get the latest infrastructure insights</p>
+                            <form id="sidebarNewsletter" action="https://formspree.io/f/xdkwazkj" method="POST">
+                                <input type="email" name="email" placeholder="Your email" required>
+                                <input type="hidden" name="form_type" value="newsletter_sidebar">
+                                <button type="submit">
+                                    <i class="fas fa-paper-plane"></i> Subscribe
+                                </button>
+                            </form>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+
+        <section class="related-posts">
+            <div class="container">
+                <h2>Related Articles</h2>
+                <div class="related-grid" id="relatedPosts"></div>
+            </div>
+        </section>
+    </div>
+
+    <div class="error-container" id="errorState" style="display: none;">
+        <i class="fas fa-exclamation-circle"></i>
+        <h2>Article Not Found</h2>
+        <p>The article you're looking for doesn't exist or has been removed.</p>
+        <a href="blog.html">
+            <i class="fas fa-arrow-left"></i> Back to Blog
+        </a>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Our Office</h3>
+                    <div class="footer-links">
+                        <a href="https://maps.app.goo.gl/d1MnPAUq1zS32bpJA" target="_blank">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>Kementerian Koordinator Bidang Infrastruktur<br>
+                                Jl. M.H. Thamrin No.8, Jakarta<br>
+                                DKI Jakarta 10340</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="footer-links">
+                        <a href="mailto:sekretariat@ipfo.kemenkoinfra.go.id">
+                            <i class="fas fa-envelope"></i>
+                            sekretariat@ipfo.kemenkoinfra.go.id
+                        </a>
+                        <a href="tel:+6285123332509">
+                            <i class="fas fa-phone"></i>
+                            +6285123332509
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="mobile-nav">
+        <div class="mobile-nav-items">
+            <a href="homepage.html" class="mobile-nav-item">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <a href="project-catalogue.html" class="mobile-nav-item">
+                <i class="fas fa-folder-open"></i>
+                Projects
+            </a>
+            <a href="contact-us.html" class="mobile-nav-item">
+                <i class="fas fa-envelope"></i>
+                Contact
+            </a>
+            <a href="blog.html" class="mobile-nav-item active">
+                <i class="fas fa-newspaper"></i>
+                Blog
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTjaqBX7gq1Mg0lxaLyw5rO2Bo1jbaxMveEopOadoSUxHFIlJii__6pMTaWTnDkUDeLoTivvmP_dE31/pub?gid=0&single=true&output=csv';
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = urlParams.get('id');
+
+        let allArticles = [];
+
+        async function loadArticle() {
+            if (!articleId) {
+                showError();
+                return;
+            }
+
+            try {
+                const response = await fetch(SHEET_URL);
+                const csvText = await response.text();
+                allArticles = parseCSV(csvText);
+
+                console.log('Loaded articles:', allArticles);
+                console.log('Looking for ID:', articleId);
+
+                const article = allArticles.find(a => a.id === articleId);
+
+                if (!article) {
+                    console.error('Article not found with ID:', articleId);
+                    showError();
+                    return;
+                }
+
+                displayArticle(article);
+                loadRelatedPosts(article.category, article.id);
+                hideLoading();
+            } catch (error) {
+                console.error('Error loading article:', error);
+                showError();
+            }
+        }
+
+        function parseCSV(csv) {
+            const lines = csv.trim().split('\n');
+            const articles = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue;
+
+                const row = parseCSVLine(lines[i]);
+
+                if (row.length >= 8) {
+                    articles.push({
+                        id: row[0]?.trim() || '',
+                        title: row[1]?.trim() || '',
+                        excerpt: row[2]?.trim() || '',
+                        content: row[3]?.trim() || '',
+                        category: row[4]?.trim() || 'General',
+                        author: row[5]?.trim() || 'IPFO Team',
+                        date: row[6]?.trim() || new Date().toISOString().split('T')[0],
+                        image: row[7]?.trim() || 'https://via.placeholder.com/1000x500/1e40af/ffffff?text=IPFO'
+                    });
+                }
+            }
+            return articles;
+        }
+
+        function parseCSVLine(line) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                const nextChar = line[i + 1];
+
+                if (char === '"') {
+                    if (inQuotes && nextChar === '"') {
+                        current += '"';
+                        i++;
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current);
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            result.push(current);
+            return result;
+        }
+
+        function displayArticle(article) {
+            document.title = `${article.title} - IPFO`;
+            document.getElementById('articleCategory').textContent = article.category;
+            document.getElementById('articleTitle').textContent = article.title;
+            document.getElementById('articleDate').textContent = formatDate(article.date);
+            document.getElementById('articleAuthor').textContent = article.author;
+            document.getElementById('articleImage').src = article.image;
+            document.getElementById('articleImage').alt = article.title;
+            document.getElementById('articleContent').innerHTML = article.content;
+
+            const wordCount = article.content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+            const readTime = Math.ceil(wordCount / 200);
+            document.getElementById('readTime').textContent = `${readTime} min read`;
+
+            setupShareButtons(article.title);
+            document.getElementById('articleContainer').style.display = 'block';
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function setupShareButtons(title) {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(title);
+
+            document.getElementById('shareTwitter').href =
+                `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+            document.getElementById('shareLinkedIn').href =
+                `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+            document.getElementById('shareFacebook').href =
+                `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+            document.getElementById('shareEmail').href =
+                `mailto:?subject=${text}&body=Check out this article: ${url}`;
+        }
+
+        function loadRelatedPosts(category, currentId) {
+            const related = allArticles
+                .filter(a => a.id !== currentId && a.category === category)
+                .slice(0, 3);
+
+            const grid = document.getElementById('relatedPosts');
+            grid.innerHTML = '';
+
+            related.forEach(post => {
+                const card = document.createElement('div');
+                card.className = 'related-card';
+                card.onclick = () => window.location.href = `blog-article.html?id=${post.id}`;
+
+                card.innerHTML = `
+                    <img src="${post.image}" alt="${post.title}" onerror="this.src='https://via.placeholder.com/400x250/1e40af/ffffff?text=IPFO'">
+                    <div class="related-card-content">
+                        <h3>${post.title}</h3>
+                        <p>${post.excerpt}</p>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        document.getElementById('sidebarNewsletter').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    alert('Thank you for subscribing!');
+                    form.reset();
+                } else {
+                    alert('Oops! There was a problem. Please try again.');
+                }
+            } catch (error) {
+                alert('Oops! There was a problem. Please try again.');
+            }
+        });
+
+        function hideLoading() {
+            document.getElementById('loadingState').style.display = 'none';
+        }
+
+        function showError() {
+            document.getElementById('loadingState').style.display = 'none';
+            document.getElementById('errorState').style.display = 'flex';
+        }
+
+        window.addEventListener('load', loadArticle);
+    </script>
+</body>
+
+</html>
